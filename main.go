@@ -138,20 +138,15 @@ func main() {
     var registerQuestion int
     regSequence := []string{"Send API key", "Send API secret", "Send UID"}
 
-    //tickerHour := time.NewTicker(5 * time.Second)
     tickerHour := time.NewTicker(60 * time.Minute)
     tickerDay := time.NewTicker(24 * 60 * time.Minute)
     tickerWeek := time.NewTicker(7 * 24 * 60 * time.Minute)
-    //quit := make(chan struct{})
 
-    //for update := range upd {
     for {
         select {
-            //upd, _ := bot.GetUpdates(ucfg)
 
             case update := <-upd :
                 if update.Message == nil {
-                    //continue
                     break
                 }
 
@@ -295,7 +290,6 @@ func main() {
                             postBuyData := map[string]string{"amount": btc_amount}
                             ans, _ := api.PostApiWrapper(config_data, "www.bitstamp.net/api/v2/buy/market/btcusd/", postBuyData)
                             log.Println("buy ans: ", ans)
-                            //bot.Send(ans)
                         } else {
                             msg.Text = "You API is not registered yet"
                             bot.Send(msg)
@@ -311,7 +305,6 @@ func main() {
                           postSellData = map[string]string{"amount": balance["btc_available"]}
                           ans, _ := api.PostApiWrapper(config_data, "www.bitstamp.net/api/v2/buy/market/btcusd/", postSellData)
                           log.Println("sell ans: ", ans)
-                          //bot.Send(ans)
                       } else {
                           msg.Text = "You API is not registered yet"
                           bot.Send(msg)
@@ -330,8 +323,6 @@ func main() {
                             orders, _ := api.PostApiWrapper(config_data, "www.bitstamp.net/api/v2/open_orders/all/", postData)
 
                             log.Println("open orders: ", orders)
-                            //msg.Text = "Your open orders: " + orders
-                            //bot.Send(msg)
                         } else {
                             msg.Text = "You API is not registered yet"
                             bot.Send(msg)
@@ -390,9 +381,6 @@ func main() {
                     case <- tickerWeek.C:
                         notifyWrapper("w", bot)
 
-                    //case <- quit:
-                    //    tickerHour.Stop()
-                    //    return
                     default:
                     //DO NOTHING
                 }
