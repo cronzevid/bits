@@ -1,0 +1,17 @@
+{
+  "telegram": {
+    "token": "your_telegram_bot_token_here"
+  },
+  "bitstamp": {
+    "key": "your_bitstamp_api_key_here",
+    "secret": "your_bitstamp_api_secret_here",
+    "uid": "your_bitstamp_user_id_here"
+  },
+  "notifications": {
+    "hourly_threshold": 3.0,
+    "daily_threshold": 5.0,
+    "weekly_threshold": 10.0,
+    "retry_count": 3,
+    "retry_delay": 5
+  }
+} 
